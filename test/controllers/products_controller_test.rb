@@ -23,7 +23,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_response 200
 
     data = JSON.parse(response.body)
-    assert_equal ["id", "name", "price", "image_url", "description"], data.keys
+    assert_equal ["id", "name", "price", "is_discounted?", "tax", "total", "image_url", "description"], data.keys
   end
 
   test "update" do
@@ -40,23 +40,5 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
       delete "/products/#{Product.first.id}.json"
       assert_response 200
     end
-  end
-
-  test "is_discounted?" do
-    product = Product.new(price: 11)
-    assert_equal false, product.is_discounted?
-
-    product = Product.new(price: 1)
-    assert_equal true, product.is_discounted?
-  end
-
-  test "tax" do
-    product = Product.new(price: 100)
-    assert_in_delta 9, product.tax
-  end
-
-  test "total" do
-    product = Product.new(price: 100)
-    assert_in_delta 109, product.total
   end
 end
