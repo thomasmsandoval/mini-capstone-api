@@ -14,3 +14,9 @@ Product.create(name: "Adjustable desk", price: 465, image_url: "https://www.ulin
 Product.create(name: "Standing floor mat", price: 88, image_url: "https://www.uline.com/Product/Detail/H-5159/Retail-Mats/Cashier-Mat-2-x-3?pricode=WA9837&gadtype=pla&id=H-5159&gad_source=1&gclid=CjwKCAiArfauBhApEiwAeoB7qEkn1ZZ6DwOHQ_uqR1aeaKMKmEPlMAbC4OALkS1q4YQEsouzPIfFoRoCItAQAvD_BwE", description: "mat")
 
 Product.create(name: "Wireless Phone Charger", price: 42, image_url: "https://www.blueboltchargers.com/products/bolthome-3-in-1-charger?variant=36082625577116&currency=USD&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic&utm_source=google&utm_medium=paid&utm_campaign=17825719569&utm_content=&utm_term=&gadid=&utm_source=google&utm_medium=paid&utm_campaign=17825719569&utm_content=&utm_term=&tw_source=google&tw_adid=&gad_source=4&gclid=CjwKCAiArfauBhApEiwAeoB7qHCAbtYAYA1lAug_1PzhjTo4fPgFaxNGbBaFkEMdfz-Qh35ZiHmuGxoCz5cQAvD_BwE", description: "phone charger")
+
+Supplier.create(name: "Staples", email: "orders@staples.com", phone_number: "800-555-5555")
+
+Supplier.create(name: "Grainger", email: "orders@grainger.com", phone_number: "888-555-2346")
+
+Supplier.creaate(name: "Amazon", email: "info@amazon.com", phone_number: "800-555-8932")
