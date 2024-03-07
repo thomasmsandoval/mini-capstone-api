@@ -1,10 +1,11 @@
 class Product < ApplicationRecord
-  validates :name, presence: true
-  validates :price, presence: true
-  validates :price, numericality: true
-  validates :description, length: { minimum: 20 }
-  validates :quantity, presence: true
-  validates :image_url, presence: true
+  # validates :name, presence: true
+  # validates :price, presence: true
+  # validates :price, numericality: true
+  # validates :description, length: { minimum: 20 }
+  # validates :quantity, presence: true
+  # validates :image_url, presence: true
+  belongs_to :supplier
 
   def is_discounted?
     if price <= 10
@@ -20,5 +21,9 @@ class Product < ApplicationRecord
 
   def total
     total = price + tax
+  end
+
+  def images
+    Image.where(product_id: id)
   end
 end
