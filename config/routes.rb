@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   post "/suppliers" => "supplierss#create"
   patch "/suppliers/:id" => "suppliers#update"
   delete "/suppliers/:id" => "suppliers#destroy"
+  get "/users" => "users#index"
   post "/users" => "users#create"
+  post "/sessions" => "sessions#create"
 
   # Defines the root path route ("/")
   # root "posts#index"
