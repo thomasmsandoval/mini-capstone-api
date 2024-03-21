@@ -7,5 +7,5 @@ json.total product.total
 json.description product.description
 json.supplier product.supplier  
 json.images product.images 
-json.updated product.updated 
+json.updated_at product.updated_at 
 json.created_at product.created_at
