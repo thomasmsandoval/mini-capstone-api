@@ -6,6 +6,7 @@ class Product < ApplicationRecord
   # validates :quantity, presence: true
   # validates :image_url, presence: true
   belongs_to :supplier
+  belongs_to :order
 
   def is_discounted?
     if price <= 10
