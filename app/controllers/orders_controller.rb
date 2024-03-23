@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
       total: params["total"],
     )
     if @order.valid?
-      render json: @order.as_json
+      render :show
     else
       render json: { errors: @order.errors.full_mesages }, status: :bad_request
     end
@@ -17,11 +17,11 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find_by(id: params[:id])
-    render json: @order.as_json
+    render :show
   end
 
   def index
     @orders = Order.all
-    render json: @orders.as_json
+    render :index
   end
 end
