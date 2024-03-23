@@ -35,11 +35,15 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
   test "update" do
     product = Product.first
-    patch "/products/#{product.id}.json", params: { name: "Updated name" }
+    patch "/products/#{product.id}.json", params: { name: "Updated name", description: "longggggggggggggggggggggg boi", price: "1.0" }
     assert_response 422
 
     data = JSON.parse(response.body)
     assert_equal "Updated name", data["name"]
+    assert_equal "1.0", data["price"]
+    assert_equal "longggggggggggggggggggggg boi", data["description"]
+    data = JSON.parse(response.body)
+    assert_includes data["errors"], "Supplier must exist"
   end
 
   test "destroy" do

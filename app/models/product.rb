@@ -6,7 +6,8 @@ class Product < ApplicationRecord
   # validates :quantity, presence: true
   # validates :image_url, presence: true
   belongs_to :supplier
-  belongs_to :order
+  has_many :images
+  has_many :orders
 
   def is_discounted?
     if price <= 10
@@ -24,7 +25,7 @@ class Product < ApplicationRecord
     total = price + tax
   end
 
-  def images
-    Image.where(product_id: id)
-  end
+  # def images
+  #   Image.where(product_id: id)
+  # end
 end
