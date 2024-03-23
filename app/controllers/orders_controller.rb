@@ -14,4 +14,9 @@ class OrdersController < ApplicationController
       render json: { errors: @order.errors.full_mesages }, status: :bad_request
     end
   end
+
+  def show
+    @order = Order.find_by(id: params[:id])
+    render json: @order.as_json
+  end
 end
