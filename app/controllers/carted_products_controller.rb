@@ -7,10 +7,15 @@ class CartedProductsController < ApplicationController
       status: params[:status],
       order_id: params[:order_id],
     )
-    if @carted_product.save
-      render show
+    if @carted_product.valid?
+      render json: { message: "Product added to cart" }
     else
       render json: { errors: @carted_product.full_messages }, status: 422
     end
+  end
+
+  def index
+    @carted_products = carted_product.all
+    render :index
   end
 end
