@@ -2,8 +2,13 @@ class OrdersController < ApplicationController
   before_action :authenticate_user
 
   def create
-    product = Product.find_by(id: params["product_id"])
-    calculated_subtotal = product.price * params["quantity"].to_i
+    carted_products = current_user.carted_products.where(status: "carted")
+
+    calculated_subtotal = 0
+    carted_products.each do |carted_product|
+      calculated_subtotal += carted_product.quantity * carted_product.product.price
+    end
+
     calculated_tax = calculated_subtotal / 10
     calculated_total = calculated_subtotal + calculated_tax
 
@@ -13,17 +18,11 @@ class OrdersController < ApplicationController
       tax: calculated_tax,
       total: calculated_total,
     )
+    carted_products.update_all(status: "purchased", order_id: @order.id)
     if @order.valid?
-      index = 0
-      while index < carted_products.length
-        carted_product = carted_products[index]
-        carted_product.update(status: "purchased", order_id: @order_id)
-        index = index + 1
-      end
       render :show
     else
-      render json: { errors: @order.errors.full_messages },
-             status: :unprocessable_entity
+      render json: { errors: @order.errors.full_messages }, status: :bad_request
     end
   end
 
