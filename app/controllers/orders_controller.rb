@@ -14,9 +14,16 @@ class OrdersController < ApplicationController
       total: calculated_total,
     )
     if @order.valid?
+      index = 0
+      while index < carted_products.length
+        carted_product = carted_products[index]
+        carted_product.update(status: "purchased", order_id: @order_id)
+        index = index + 1
+      end
       render :show
     else
-      render json: { errors: @order.errors.full_mesages }, status: :bad_request
+      render json: { errors: @order.errors.full_messages },
+             status: :unprocessable_entity
     end
   end
 
